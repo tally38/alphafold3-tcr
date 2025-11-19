@@ -43,14 +43,17 @@ RUN mkdir /hmmer_build /hmmer ; \
     (cd /hmmer_build/hmmer-3.4/easel && make install) ; \
     rm -R /hmmer_build
 
+
+# Install the Python dependencies AlphaFold 3 needs.
+COPY ./dev-requirements.txt /app/alphafold/dev-requirements.txt
+RUN pip3 install -r /app/alphafold/dev-requirements.txt
+
 # Copy the AlphaFold 3 source code from the local machine to the container and
 # set the working directory to there.
 COPY . /app/alphafold
 WORKDIR /app/alphafold
-
-# Install the Python dependencies AlphaFold 3 needs.
-RUN pip3 install -r dev-requirements.txt
 RUN pip3 install --no-deps .
+
 # Build chemical components database (this binary was installed by pip).
 RUN build_data
 
