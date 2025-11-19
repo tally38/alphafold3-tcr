@@ -1,4 +1,6 @@
-![header](docs/header.jpg)
+# Alphafold 3 - TCR
+As part of our SPDETune-TCR method, we saved the pair representation for select resiude pairs at the TCR-pMHC interface to use as input to fine-tuned models.
+The relevent changes can be found in the get_tcrpmhc_residue_pairs_to_save_v2 method within run_alphafold.py.
 
 # AlphaFold 3
 
